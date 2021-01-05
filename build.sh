@@ -66,6 +66,8 @@ BUILD_K8=0
 BUILD_CK=0
 BUILD_BAD=0
 
+die "DEPRECATED ... use mjbright/ckad-demo"
+
 while [ ! -z "$1" ]; do
     case $1 in
         -x) set -x;;

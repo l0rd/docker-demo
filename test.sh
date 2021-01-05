@@ -55,11 +55,14 @@ CLEANUP() {
 ################################################################################
 # Args:
 
+IMAGE_REPOS="mjbright/docker-demo"
 while [ ! -z "$1" ];do
     case $1 in
         -1) VERSIONS=1;;
+        -1) VERSIONS=1;;
    
         -c) CLEANUP; exit;;
+        -a) IMAGE_REPOS="mjbright/docker-demo mjbright/k8s-demo mjbright/ckad-demo";;
 
         -h) HEADERS="-h";;
         -v) VERBOSE="-v";;
@@ -72,7 +75,7 @@ done
 
 CLEANUP
 
-for image in mjbright/docker-demo mjbright/k8s-demo; do
+for image in $IMAGE_REPOS; do
     BASE_PORT=9100
     [ $image = "mjbright/docker-demo" ] && BASE_PORT=9000
 
@@ -89,7 +92,9 @@ for image in mjbright/docker-demo mjbright/k8s-demo; do
         #docker run -d $image:$version $HEADERS $VERBOSE -listen :$PORT
 
         # expose listen on container port and expose on localhost: quel interet?
-        docker run --rm -d -p ${PORT}:${PORT} $image:$version $HEADERS $VERBOSE -listen :$PORT
+        CMD="docker run --rm -d -p ${PORT}:${PORT} $image:$version $HEADERS $VERBOSE -listen :$PORT"
+	echo "-- $CMD"
+	$CMD
     done
 done
 

@@ -66,7 +66,7 @@ func GetOutboundIP() net.IP {
 // Read command-line arguments:
 //
 func init() {
-	flag.StringVar(&listenAddr, "listen", ":TEMPLATE_EXPOSE_PORT", "listen address")
+	flag.StringVar(&listenAddr, "listen", ":80", "listen address")
 	flag.BoolVar(&verbose,      "v",      false,   "verbose (false)")
 	flag.BoolVar(&headers,      "h",      false,   "show headers (false)")
 }

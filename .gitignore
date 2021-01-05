@@ -2,3 +2,6 @@
 templates/index.html.tmpl
 main.go
 *.swp
+*.bak
+tmp/
+Dockerfile

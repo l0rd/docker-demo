@@ -1,9 +1,5 @@
 package main
 
-// TODO:
-//   Cleanup image info (spaces to separate from "Served from" message
-//   Add verbose template index.html.tmpl.verbose.tmpl to handle extra info
-
 import (
 	"flag"
 	"fmt"
@@ -147,17 +143,10 @@ func formatRequest(r *http.Request) string {
 // Example handler - sets status code
 //
 func statusCodeTest(w http.ResponseWriter, req *http.Request) {
-    //m := map[string]string{
-        //"foo": "bar",
-    //}
-    //w.Header().Add("Content-Type", "application/json")
-
-    //num := http.StatusCreated
     num := http.StatusInternalServerError
 
     w.WriteHeader( num )
 
-    //_ = json.NewEncoder(w).Encode(m)
     fmt.Fprintf(w, "\nWriting status code <%d>\n", num)
 }
 
@@ -176,7 +165,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 
         // image_version "3": return early with status code 404 or /CODE (from r.URL.Path)
         //
-        if "image_version" == "3" {
+        /* if "image_version" == "3" {
             //fmt.Fprintf(w, "\nPATH=<%s>", r.URL.Path)
             //if r.URL.Path == "/map" || r.URL.Path == "/MAP" {}
 
@@ -194,7 +183,7 @@ func index(w http.ResponseWriter, r *http.Request) {
             }
 
             return
-        }
+        } */
 
         // Get user-agent: if text-browser, e.g. wget/curl/httpie/lynx/elinks return ascii-text image:
         //
